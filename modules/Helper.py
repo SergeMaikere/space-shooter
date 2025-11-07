@@ -2,8 +2,7 @@ from functools import reduce
 from inspect import signature
 from numpy import random
 
-pipe = lambda funcs: lambda arg: reduce( lambda g, f: f(g), [arg] + funcs )
-
+pipe = lambda *funcs: lambda arg: reduce( lambda g, f: f(g), (arg, *funcs) )
 
 def curry ( fn ):
 	def curried ( *args ):
@@ -37,13 +36,15 @@ def set_rect ( anchor, position, surface ):
 	else:
 		rect = surface.get_rect(center=position)
 
-	return { "surface": surface, "rect": rect }
+	return rect
 
-is_out_of_bound = lambda rect, width: rect.left < 0 or rect.right > width
+is_out_of_bound = lambda rect, width, height: is_out_of_bound_x(rect, width) or is_out_of_bound_y(rect, height)
+is_out_of_bound_x = lambda rect, width: rect.left <= 0 or rect.right >= width
+is_out_of_bound_y = lambda rect, height: rect.top <= 0 or rect.bottom >= height
 
-def add_to_surface (surface, my_obj): 
-	surface.blit(my_obj["surface"], my_obj["rect"]) 
-	return my_obj
+def add_to_surface (surface, game_obj): 
+	surface.blit(game_obj.surface, game_obj.rect) 
+	return game_obj
 
 def voyeur ( element ):
 	print('\nSEEEERGE')
