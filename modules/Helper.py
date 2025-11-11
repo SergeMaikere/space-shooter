@@ -15,7 +15,6 @@ def curry ( fn ):
 get_random_pos = lambda w, h: ( random.randint(0, w), random.randint(0, h) )
 
 def set_rect ( anchor, position, surface ):
-	rect = None
 
 	if anchor == 'topleft':
 		rect = surface.get_rect(topleft=position)
@@ -43,7 +42,7 @@ is_out_of_bound_x = lambda rect, width: rect.left <= 0 or rect.right >= width
 is_out_of_bound_y = lambda rect, height: rect.top <= 0 or rect.bottom >= height
 
 def add_to_surface (surface, game_obj): 
-	surface.blit(game_obj.surface, game_obj.rect) 
+	surface.blit(game_obj.image, game_obj.rect) 
 	return game_obj
 
 def voyeur ( element ):
