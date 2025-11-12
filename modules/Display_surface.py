@@ -15,3 +15,6 @@ class Display:
 
 	def set_background ( self ):
 		self.image.fill('darkgrey')
+
+	def get_dimensions ( self ):
+		return { 'w': self.width, 'h': self.height }
