@@ -1,6 +1,7 @@
 from functools import reduce
 from inspect import signature
 from numpy import random
+import pygame
 
 pipe = lambda *funcs: lambda arg: reduce( lambda g, f: f(g), (arg, *funcs) )
 
@@ -44,6 +45,11 @@ is_out_of_bound_y = lambda rect, height: rect.top <= 0 or rect.bottom >= height
 def add_to_surface (surface, game_obj): 
 	surface.blit(game_obj.image, game_obj.rect) 
 	return game_obj
+
+def set_repeating_event ( every ):
+	event = pygame.event.custom_type()
+	pygame.time.set_timer(event, every)
+	return event
 
 def voyeur ( element ):
 	print('\nSEEEERGE')
