@@ -1,17 +1,17 @@
 import pygame
 from numpy import random
 from modules.Display_surface import Display
-from modules.Game_obj import Game_obj, Game_obj_clone
 from modules.Meteor import Meteor
+from modules.Star import Star
 from modules.Player import Player
-from modules.Helper import get_random_pos, set_repeating_event
+from modules.Helper import set_repeating_event
 from modules.Loader import load_image
 
 
 def set_starry_sky ( group ):
-	positions = [get_random_pos(screen.width, screen.height) for i in range(20)]
 	star_image = load_image('star.png')
-	return [ Game_obj_clone(group, 'center', pos, star_image) for pos in positions ]
+	for i in range(20):
+		Star(group, 'center', screen.get_dimensions(), star_image)
 
 pygame.init()
 clock = pygame.time.Clock()
