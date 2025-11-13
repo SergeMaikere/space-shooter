@@ -15,7 +15,9 @@ def set_starry_sky ( group ):
 
 pygame.init()
 clock = pygame.time.Clock()
+
 all_sprites = pygame.sprite.Group()
+meteor_sprites = pygame.sprite.Group()
 
 screen = Display(1280, 720)
 screen.set_caption('Space Shooter III - Revenge Of The Bit')
@@ -37,13 +39,13 @@ while running:
 		running = not event.type == pygame.QUIT
 
 		if event.type == e_meteor:
-			Meteor( all_sprites, 'midbottom', (random.randint(0, screen.width), 0), meteor, screen.get_dimensions() )
+			Meteor( (all_sprites, meteor_sprites), 'midbottom', (random.randint(0, screen.width), 0), meteor, screen.get_dimensions() )
 	
 	# Background
 	screen.set_background()
 
 	# Update all behaviours
-	all_sprites.update(dt)
+	all_sprites.update(dt, meteor_sprites)
 
 	# Add game objs to screen
 	all_sprites.draw(screen.image)

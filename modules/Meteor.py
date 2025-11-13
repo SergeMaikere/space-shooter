@@ -9,6 +9,6 @@ class Meteor ( Game_obj_clone ):
 		self.direction = pygame.math.Vector2((random.uniform(-0.5, 0.5), 1))
 		self.screen_dimensions = dims
 
-	def update ( self, dt ):
+	def update ( self, dt, meteor_sprite ):
 		self.rect.top > self.screen_dimensions['h'] and self.kill()
 		self.rect.center += self.direction * self.speed * dt
