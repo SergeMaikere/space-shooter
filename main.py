@@ -50,6 +50,9 @@ while running:
 	# Add game objs to screen
 	all_sprites.draw(screen.image)
 
+	# In case of fatal collision with a meteorite
+	running = player.game_over(meteor_sprites)
+
 	pygame.display.update()
 
 pygame.quit()

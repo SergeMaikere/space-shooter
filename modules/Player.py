@@ -36,6 +36,11 @@ class Player (Game_obj):
 		current_time = pygame.time.get_ticks()
 		self.is_allowed_to_shoot = current_time - self.__since_last_shot >= self.cooldown 
 
+	def game_over ( self, meteor_sprites ):
+		return not pygame.sprite.spritecollide(self, meteor_sprites, False)
+	
+
+
 	def update ( self, dt, meteor_sprites ):
 		keys = pygame.key.get_pressed()
 		self.__set_direction(keys)
