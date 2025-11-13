@@ -1,3 +1,4 @@
+import pygame
 from modules.Game_obj import Game_obj_clone
 
 class Laser ( Game_obj_clone ):
@@ -5,6 +6,7 @@ class Laser ( Game_obj_clone ):
 		super().__init__(group, anchor, pos, image)
 		self.speed = 400
 
-	def update ( self, dt ):
-		self.rect.y < 0 and self.kill()
-		self.rect.y -= self.speed * dt
+	def update ( self, dt, meteor_sprites ):
+		self.rect.top -= self.speed * dt
+		self.rect.bottom < 0 and self.kill()
+		pygame.sprite.spritecollide(self, meteor_sprites, True) and self.kill()
