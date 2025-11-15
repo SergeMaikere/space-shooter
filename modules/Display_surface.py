@@ -14,7 +14,7 @@ class Display:
 		pygame.display.set_caption(self.__caption)
 
 	def set_background ( self ):
-		self.image.fill('darkgrey')
+		self.image.fill('#3a2e3f')
 
 	def get_dimensions ( self ):
 		return { 'w': self.width, 'h': self.height }

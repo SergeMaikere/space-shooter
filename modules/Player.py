@@ -1,14 +1,15 @@
 
-from modules.Game_obj import Game_obj
-from modules.Laser import Laser
-from modules.Loader import image_loader
 import pygame
+from modules.Game_obj import Game_obj_clone
+from modules.Laser import Laser
+from modules.Loader import load_image, image_loader
+from modules.Groups import all_sprites
 
-class Player (Game_obj):
-	def __init__ ( self, group, anchor, pos, image_src ):
-		Game_obj.__init__(self, group, anchor, pos, image_src)
-		self.__group = group
+player_image = load_image('player.png')
 
+class Player (Game_obj_clone):
+	def __init__ ( self, anchor, pos ):
+		super().__init__(all_sprites, anchor, pos, load_image('player.png'))
 		self.direction = pygame.math.Vector2()
 		self.speed = 300
 
@@ -16,6 +17,7 @@ class Player (Game_obj):
 		self.is_allowed_to_shoot = True
 		self.__since_last_shot = 0
 		self.cooldown = 400
+		self.e_game_over = pygame.event.custom_type()
 
 	def __move ( self, dt ):
 		self.rect.center += self.direction * self.speed * dt
@@ -30,20 +32,21 @@ class Player (Game_obj):
 			return
 		self.is_allowed_to_shoot = False
 		self.__since_last_shot = pygame.time.get_ticks()
-		Laser(self.__group, 'midbottom', self.rect.midtop, self.__laser_image)
+		Laser('midbottom', self.rect.midtop, self.__laser_image)
 
 	def __set_is_allowed_to_shot ( self ):
 		current_time = pygame.time.get_ticks()
 		self.is_allowed_to_shoot = current_time - self.__since_last_shot >= self.cooldown 
 
-	def game_over ( self, meteor_sprites ):
-		return not pygame.sprite.spritecollide(self, meteor_sprites, False)
-	
+	def __game_over ( self, meteor_sprites ):
+		if pygame.sprite.spritecollide(self, meteor_sprites, False):
+			pygame.event.post(pygame.event.Event(self.e_game_over))
 
 
-	def update ( self, dt, meteor_sprites ):
+	def update ( self, dt, meteor_sprites, screen_image ):
 		keys = pygame.key.get_pressed()
 		self.__set_direction(keys)
 		self.__move(dt)
 		self.__fire_laser(keys)
 		self.__set_is_allowed_to_shot()
+		self.__game_over(meteor_sprites)
