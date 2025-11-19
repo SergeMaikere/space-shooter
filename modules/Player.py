@@ -1,11 +1,9 @@
-
 import pygame
 from modules.Game_obj import Game_obj_clone
 from modules.Laser import Laser
 from modules.Loader import load_image, image_loader
 from modules.Groups import all_sprites
 
-player_image = load_image('player.png')
 
 class Player (Game_obj_clone):
 	def __init__ ( self, anchor, pos ):
@@ -39,7 +37,7 @@ class Player (Game_obj_clone):
 		self.is_allowed_to_shoot = current_time - self.__since_last_shot >= self.cooldown 
 
 	def __game_over ( self, meteor_sprites ):
-		if pygame.sprite.spritecollide(self, meteor_sprites, False):
+		if pygame.sprite.spritecollide(self, meteor_sprites, True, pygame.sprite.collide_mask):
 			pygame.event.post(pygame.event.Event(self.e_game_over))
 
 
