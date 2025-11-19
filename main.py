@@ -10,10 +10,10 @@ from modules.Loader import load_image
 from modules.Groups import all_sprites, meteor_sprites
 
 
-def set_starry_sky ( group ):
+def set_starry_sky ():
 	star_image = load_image('star.png')
 	for i in range(20):
-		Star(group, 'center', screen.get_dimensions(), star_image)
+		Star(screen.get_dimensions(), star_image)
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -21,7 +21,7 @@ clock = pygame.time.Clock()
 screen = Display(1280, 720)
 screen.set_caption('Space Shooter III - Revenge Of The Bit')
 
-set_starry_sky(all_sprites)
+set_starry_sky()
  
 meteor = load_image('meteor.png')
 e_meteor = set_repeating_event(600)

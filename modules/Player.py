@@ -1,11 +1,11 @@
 import pygame
-from modules.Game_obj import Game_obj_clone
+from modules.Game_obj import Game_obj
 from modules.Laser import Laser
 from modules.Loader import load_image, image_loader
 from modules.Groups import all_sprites
 
 
-class Player (Game_obj_clone):
+class Player (Game_obj):
 	def __init__ ( self, anchor, pos ):
 		super().__init__(all_sprites, anchor, pos, load_image('player.png'))
 		self.direction = pygame.math.Vector2()

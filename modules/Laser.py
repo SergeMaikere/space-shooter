@@ -1,8 +1,8 @@
 import pygame
-from modules.Game_obj import Game_obj_clone
+from modules.Game_obj import Game_obj
 from modules.Groups import all_sprites
 
-class Laser ( Game_obj_clone ):
+class Laser ( Game_obj ):
 	def __init__ ( self, anchor, pos, image ):
 		super().__init__(all_sprites, anchor, pos, image)
 		self.speed = 400
