@@ -22,7 +22,7 @@ class Meteor ( Game_obj ):
 		self.image = pygame.transform.rotozoom(self._og_image, self.rotation, 1)
 		self.rect = self.image.get_frect(center = self.rect.center) 
 
-	def update ( self, bag_of_tricks ):
-		self.__rotate(bag_of_tricks['dt'])
-		self.__move(bag_of_tricks['dt'])
+	def update ( self, helper ):
+		self.__rotate(helper['dt'])
+		self.__move(helper['dt'])
 		self.__die_off_screen()

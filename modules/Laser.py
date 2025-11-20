@@ -11,18 +11,20 @@ class Laser ( Game_obj ):
 	def __dies_of_screen ( self ):
 		self.rect.bottom < 0 and self.kill()
 
-	def __on_meteor_collision ( self, meteor_sprites ):
+	def __on_meteor_collision ( self, meteor_sprites, explosion_sound ):
 		if pygame.sprite.spritecollide(self, meteor_sprites, True):
 			Explosion(self.rect.midtop)
 			self.kill()
+			self.__set_eplosion_sound(explosion_sound)
 
+	def __set_eplosion_sound ( self, explosion_sound ):
+		explosion_sound.set_volume(0.4)
+		explosion_sound.play()
 
 	def __move ( self, dt ):
 		self.rect.top -= self.speed * dt
 
-	
-
-	def update ( self, bag_of_tricks ):
+	def update ( self, helper ):
 		self.__dies_of_screen()
-		self.__on_meteor_collision(bag_of_tricks['meteor_sprites'])
-		self.__move(bag_of_tricks['dt'])
+		self.__on_meteor_collision(helper['meteor_sprites'], helper['game_sounds']['explosion'])
+		self.__move(helper['dt'])

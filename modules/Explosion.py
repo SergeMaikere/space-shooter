@@ -11,10 +11,10 @@ class Explosion ( pygame.sprite.Sprite ):
 		self.image = explosion_loader(0)
 		self.rect = set_rect('center', pos, self.image)
 
-	def update ( self, bag_of_tricks ):
-		self.frames_i += int(20 * bag_of_tricks['dt']) or 1
+	def update ( self, helper ):
+		self.frames_i += int(20 * helper['dt']) or 1
 		
-		if self.frames_i >= len(bag_of_tricks['frames']): 
+		if self.frames_i >= len(helper['frames']): 
 			self.kill()
 		else:
-			self.image = bag_of_tricks['frames'][self.frames_i]
+			self.image = helper['frames'][self.frames_i]

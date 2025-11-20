@@ -3,7 +3,7 @@ from inspect import signature
 from numpy import random
 import pygame
 
-pipe = lambda *funcs: lambda arg: reduce( lambda g, f: f(g), (arg, *funcs) )
+pipe = lambda *funcs: lambda arg: reduce( lambda g, f: f(g), funcs, arg )
 
 def curry ( fn ):
 	def curried ( *args ):
@@ -12,6 +12,16 @@ def curry ( fn ):
 		else:
 			return lambda *args2: curried( *args, *args2 )
 	return curried
+
+adjust_func_for_list_map = lambda func: lambda my_list: [ func(x) for x in my_list ]
+
+remove_format_from_file_name = lambda file: file.split('.')[0]
+
+add_keys_to_list = lambda my_keys, my_list: [ [ my_keys[i], item ] for i, item in enumerate(my_list) ]
+
+def add_to_obj ( obj, item ):
+	obj[item[0]] = item[1]
+	return obj
 
 get_random_pos = lambda w, h: ( random.randint(0, w), random.randint(0, h) )
 
