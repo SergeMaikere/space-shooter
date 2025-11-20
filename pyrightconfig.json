@@ -3,5 +3,4 @@
 	// Install LSP-json to get validation and autocompletion in this file.
 	"venvPath": ".",
 	"venv": "myenv",
-	"extraPaths": [ "/src/modules/*" ]
 }
