@@ -1,19 +1,14 @@
 import pygame
 from modules.Helper import set_rect
-from modules.Loader import image_loader, load_font, get_font_image
+from modules.Loader import load_font, get_font_image
 from modules.Groups import all_sprites
 
+
 class Game_obj ( pygame.sprite.Sprite ):
-	def __init__ ( self, group, anchor, pos, image_src ):
-		super().__init__(group)
-		self.image = image_loader(image_src)
-		self.rect = set_rect(anchor, pos, self.image)
-
-
-class Game_obj_clone ( pygame.sprite.Sprite ):
 	def __init__(self, group, anchor, pos, image):
 		super().__init__(group)
-		self.image = image
+		self._og_image = image
+		self.image = self._og_image
 		self.rect = set_rect(anchor, pos, self.image)
 
 

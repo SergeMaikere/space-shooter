@@ -1,15 +1,13 @@
-
 import pygame
-from modules.Game_obj import Game_obj_clone
+from modules.Game_obj import Game_obj
 from modules.Laser import Laser
-from modules.Loader import load_image, image_loader
+from modules.Loader import image_loader
 from modules.Groups import all_sprites
 
-player_image = load_image('player.png')
 
-class Player (Game_obj_clone):
+class Player (Game_obj):
 	def __init__ ( self, anchor, pos ):
-		super().__init__(all_sprites, anchor, pos, load_image('player.png'))
+		super().__init__(all_sprites, anchor, pos, image_loader('player.png'))
 		self.direction = pygame.math.Vector2()
 		self.speed = 300
 
@@ -39,14 +37,14 @@ class Player (Game_obj_clone):
 		self.is_allowed_to_shoot = current_time - self.__since_last_shot >= self.cooldown 
 
 	def __game_over ( self, meteor_sprites ):
-		if pygame.sprite.spritecollide(self, meteor_sprites, False):
+		if pygame.sprite.spritecollide(self, meteor_sprites, True, pygame.sprite.collide_mask):
 			pygame.event.post(pygame.event.Event(self.e_game_over))
 
 
-	def update ( self, dt, meteor_sprites, screen_image ):
+	def update ( self, bag_of_tricks ):
 		keys = pygame.key.get_pressed()
 		self.__set_direction(keys)
-		self.__move(dt)
+		self.__move(bag_of_tricks['dt'])
 		self.__fire_laser(keys)
 		self.__set_is_allowed_to_shot()
-		self.__game_over(meteor_sprites)
+		self.__game_over(bag_of_tricks['meteor_sprites'])
