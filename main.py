@@ -6,12 +6,12 @@ from modules.Star import Star
 from modules.Player import Player
 from modules.Score import Score
 from modules.Helper import set_repeating_event
-from modules.Loader import load_image
+from modules.Loader import image_loader, explosion_loader
 from modules.Groups import all_sprites, meteor_sprites
 
 
 def set_starry_sky ():
-	star_image = load_image('star.png')
+	star_image = image_loader('star.png')
 	for i in range(20):
 		Star(screen.get_dimensions(), star_image)
 
@@ -23,15 +23,17 @@ screen.set_caption('Space Shooter III - Revenge Of The Bit')
 
 set_starry_sky()
  
-meteor = load_image('meteor.png')
+meteor = image_loader('meteor.png')
 e_meteor = set_repeating_event(600)
 
 player = Player('midleft', (screen.width/2, screen.height/2))
 
 score = Score((screen.width/2, screen.height - 50))
 
+frames = [ explosion_loader(i ) for i in range(21) ]
+
 running = True
-while running:
+while running: 
 	dt = clock.tick(60) / 1000
 
 	# Event loop
@@ -45,7 +47,8 @@ while running:
 	screen.set_background()
 
 	# Update all behaviours
-	all_sprites.update(dt, meteor_sprites, screen.image)
+	bag_of_tricks = {'dt': dt, 'meteor_sprites': meteor_sprites, 'screen_image': screen.image, 'frames': frames}
+	all_sprites.update(bag_of_tricks)
 
 	# Add game objs to screen
 	all_sprites.draw(screen.image)
