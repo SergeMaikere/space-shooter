@@ -11,13 +11,6 @@ It is a basic space shooter where the player controls a spaceship with arrow key
 Enjoy ! :grin:
 
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Installation
 
 1. Clone the repository:
@@ -30,4 +23,12 @@ Enjoy ! :grin:
  pip install -r requirements.txt
  ```
 
- 
+## Usage 
+
+To run the project use the following command:
+```bash
+python main.py
+ ```
+
+## License
+This project is licensed under the [MIT License](https://mit-license.org).
