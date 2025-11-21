@@ -1,17 +1,24 @@
 
-# Space Shooter in Python
+# Space Shooter in Python 
 
-This is my first ever game in Python. It was made following the tuotiral of [Cear Code](https://www.youtube.com/@ClearCode).
+This is my first ever game made in Python. I followed the youtube tutorial of [@CearCode](https://www.youtube.com/@ClearCode).  
+Link to the video :arrow_right: *<https://www.youtube.com/watch?v=8OMghdHP-zs>*
 
-Link of the video right here :arrow_right: *<https://www.youtube.com/watch?v=8OMghdHP-zs>*  
-The goal was to familiarized myself with python coming, mostly, from a javascript and typescript background.
+The goal was to familiarized myself with python since I was, mostly, from a javascript and typescript background.
 
-It is a basic space shooter where the player controls a spaceship with arrow keys and shoots meteors.
+It is a basic space shooter where the player controls a spaceship with arrow-keys and shoots meteors.
 
 Enjoy ! :grin:
 
 
-## Installation
+## Table of content
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+
+
+
+## Installation 
 
 1. Clone the repository:
 ```bash
@@ -30,5 +37,6 @@ To run the project use the following command:
 python main.py
  ```
 
-## License
+## License 
+
 This project is licensed under the [MIT License](https://mit-license.org).
