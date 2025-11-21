@@ -1,10 +1,11 @@
 import pygame
 from modules.Game_obj import Game_obj
+from modules.Groups import all_sprites, meteor_sprites
 from numpy import random
 
 class Meteor ( Game_obj ):
-	def __init__ ( self, group, anchor, pos, image, dims ):
-		super().__init__(group, anchor, pos, image)
+	def __init__ ( self, pos, image, dims ):
+		super().__init__((all_sprites, meteor_sprites), 'midbottom', pos, image)
 		self.rotation = 0
 		self.rotation_speed = random.uniform(-80, 80)
 		self.speed = random.uniform(100, 200)
@@ -12,7 +13,8 @@ class Meteor ( Game_obj ):
 		self.screen_dimensions = dims
 
 	def __die_off_screen ( self ):
-		self.rect.top > self.screen_dimensions['h'] and self.kill()
+		if self.rect.top > self.screen_dimensions['h']:
+			self.kill()
 
 	def __move ( self, dt ):
 		self.rect.center += self.direction * self.speed * dt

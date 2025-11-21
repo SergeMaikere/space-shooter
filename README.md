@@ -3,8 +3,8 @@
 
 This is my first ever game in Python. It was made following the tuotiral of [Cear Code](https://www.youtube.com/@ClearCode).
 
-Link of the video right here :arrow_right: *<https://www.youtube.com/watch?v=8OMghdHP-zs>*
-The goal was to familiarized myself with python being mostly a javascript and typescript developer.
+Link of the video right here :arrow_right: *<https://www.youtube.com/watch?v=8OMghdHP-zs>*  
+The goal was to familiarized myself with python coming, mostly, from a javascript and typescript background.
 
 It is a basic space shooter where the player controls a spaceship with arrow keys and shoots meteors.
 
