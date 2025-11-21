@@ -60,9 +60,3 @@ def set_repeating_event ( every ):
 	event = pygame.event.custom_type()
 	pygame.time.set_timer(event, every)
 	return event
-
-def voyeur ( element ):
-	print('\nSEEEERGE')
-	print(element)
-	print('\n')
-	return element

@@ -14,6 +14,6 @@ class Score ( Game_obj_font ):
 	def __set_score_rect ( self, screen_image ):
 		pygame.draw.rect(screen_image, (240, 240, 240), self.rect.inflate(30, 15).move(0, -6), 5, 10)
 
-	def update ( self, bag_of_tricks ):
+	def update ( self, helper ):
 		self.__set_score_timer()
-		self.__set_score_rect(bag_of_tricks['screen_image'])
+		self.__set_score_rect(helper['screen_image'])
